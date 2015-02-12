@@ -1,0 +1,75 @@
+<?php
+/**
+ * Created by Alan.
+ * User: Alan
+ * Date: 27/03/13
+ * Time: 20:11
+ */
+class Database extends PDO{
+
+    private static $PDOInstance;
+
+    public function __construct(){
+        if(!self::$PDOInstance) {
+            try {
+                $enviroment = ENVIROMENT;
+                $settingsVars = Settings::$$enviroment;
+                self::$PDOInstance = new PDO('mysql:host =' . $settingsVars['db_host'] . ';dbname=' . $settingsVars['db_name'], $settingsVars['db_user'], $settingsVars['db_pass'], array(
+                    PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES ' . $settingsVars['db_char']
+                ));
+            } catch (PDOException $e) {
+                die("PDO CONNECTION ERROR: " . $e->getMessage() . "<br/>");
+            }
+        }
+    return self::$PDOInstance;
+    }
+
+    public function query($statement) {
+        return self::$PDOInstance->query($statement);
+    }
+
+    /**
+     * Execute query and return all rows in assoc array
+     *
+     * @param string $statement
+     * @return array
+     */
+    public function queryFetchAllAssoc($statement) {
+        return self::$PDOInstance->query($statement)->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    /**
+     * Execute query and return one row in assoc array
+     *
+     * @param string $statement
+     * @return array
+     */
+    public function queryFetchRowAssoc($statement) {
+        return self::$PDOInstance->query($statement)->fetch(PDO::FETCH_ASSOC);
+    }
+
+    /**
+     * Prepares a statement for execution and returns a statement object
+     *
+     * @param string $statement A valid SQL statement for the target database server
+     * @param array $driver_options Array of one or more key=>value pairs to set attribute values for the PDOStatement obj
+    returned
+     * @return PDOStatement
+     */
+    public function prepare ($statement, $driver_options=false) {
+        if(!$driver_options) $driver_options=array();
+        return self::$PDOInstance->prepare($statement, $driver_options);
+    }
+
+    /**
+     * Quotes a string for use in a query
+     *
+     * @param string $input
+     * @param int $parameter_type
+     * @return string
+     */
+    public function quote ($input, $parameter_type=0) {
+        return self::$PDOInstance->quote($input, $parameter_type);
+    }
+
+}

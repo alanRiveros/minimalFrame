@@ -8,7 +8,13 @@
 
 namespace view\home;
 
+use view\BaseView;
 
-class HomeView {
+class HomeView extends BaseView{
 
+    public function __construct(){
+        parent::__construct();
+        $tpl = $this->_instance->loadTemplate('base');
+        echo $tpl->render();
+    }
 } 

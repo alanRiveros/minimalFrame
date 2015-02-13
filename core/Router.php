@@ -9,12 +9,9 @@
 
 class Router{
    static public function buildPath(Request $peticion){
-
         $module = $peticion->getModule();
         $controller = $peticion->getController();
-
         $path = CONTROLLER_PATH . $module . DS . $controller . '.php';
-
         return $path;
    }
 }

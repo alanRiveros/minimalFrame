@@ -5,13 +5,10 @@
  * Date: 12/02/15
  * Time: 06:47
  */
-
-use clases\Paginator;
-
+use view\home\HomeView;
 class IndexController {
 
     public function showAction(){
-        print_r('hola estoy en la action show espero que les haya gustado chau');
-        $paginator = new Paginator();
+        $view = new HomeView();
     }
-} 
+}

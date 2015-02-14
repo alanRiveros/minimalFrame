@@ -23,12 +23,7 @@ class BaseView {
             'helpers' => array('i18n' => function($text) {
                         // do something translatey here...
                     }),
-            'escape' => function($value) {
-                    return htmlspecialchars($value, ENT_COMPAT, 'UTF-8');
-                },
-            'charset' => 'ISO-8859-1',
-            'strict_callables' => true,
-            'pragmas' => [\Mustache_Engine::PRAGMA_FILTERS],
+            'charset' => 'ISO-8859-1'
         ));
     }
 }

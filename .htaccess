@@ -6,5 +6,5 @@ RewriteCond %{REQUEST_FILENAME} !-l
 
 RewriteCond %{REQUEST_URI} /+[^\.]+$
 RewriteRule ^(.+[^/])$ %{REQUEST_URI}/ [R=301,L]
-RewriteCond %{REQUEST_URI} !\.(css|gif|ico|jpg|js|png|swf|txt)$
+RewriteCond %{REQUEST_URI} !\.(css|gif|ico|jpg|js|png|swf|txt|eot|woff2|woff|ttf|svg)$
 RewriteRule ^(.+)$ index.php?url=$1 [QSA,L]

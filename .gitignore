@@ -1,5 +1,4 @@
 .idea/
-core/Config.php
 composer.lock
 vendor
 cache/

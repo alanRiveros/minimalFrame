@@ -14,6 +14,6 @@ class HomeView extends BaseView{
 
     public function __construct(){
         parent::__construct();
-        echo $this->_instance->render('home/index', array('var' => 'Oli Oli'));
+        echo $this->_instance->render('home/index', array('var' => 'Oli Oli', 'base_url' => BASE_URL));
     }
 } 

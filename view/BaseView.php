@@ -14,7 +14,7 @@ class BaseView {
 
     public function __construct(){
         $this->_instance = new \Mustache_Engine(array(
-            'template_class_prefix' => '__Crucius_',
+            'template_class_prefix' => '__Gravysoft_',
             'cache' => CACHE_PATH,
             'cache_file_mode' => 0666, // Please, configure your umask instead of doing this :)
             'cache_lambda_templates' => true,
